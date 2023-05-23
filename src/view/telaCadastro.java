@@ -15,7 +15,7 @@ import model.dao.ContaDAO;
  */
 public class telaCadastro extends javax.swing.JFrame {
 
-    Controller c = new Controller();
+    Controller con = new Controller();
     /**
      * Creates new form telaCadastro
      */
@@ -110,7 +110,7 @@ public class telaCadastro extends javax.swing.JFrame {
         Conta c = new Conta(); 
        
         c.setLoginUsuario(jTextFieldLoginUsuario.getText());
-        c.setSenhaUsuario(jPasswordFieldSenha.getText());
+        c.setSenhaUsuario(con.criptografar(jPasswordFieldSenha.getPassword()));
         c.setNomeUsuario(jTextFieldNomeUsuario.getText());
         
         cDao.create(c);
@@ -121,7 +121,7 @@ public class telaCadastro extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        c.executarTelaInicial();
+        con.executarTelaInicial();
         dispose();
         
     }//GEN-LAST:event_jButton2ActionPerformed

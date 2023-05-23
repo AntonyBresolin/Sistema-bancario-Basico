@@ -7,6 +7,7 @@ package view;
 
 import controlador.Controller;
 import java.awt.Color;
+import java.security.MessageDigest;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.dao.ContaDAO;
@@ -17,16 +18,14 @@ import model.dao.ContaDAO;
  */
 public class telaInicial extends javax.swing.JFrame {
 
-    
     Controller c = new Controller();
-    
+
     /**
      * Creates new form telaInicial
      */
     public telaInicial() {
         initComponents();
 
-        
     }
 
     /**
@@ -104,20 +103,20 @@ public class telaInicial extends javax.swing.JFrame {
     private void jButtonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEntrarActionPerformed
         // TODO add your handling code here:
         ContaDAO cDao = new ContaDAO();
+
         
-        
-        if(cDao.checkLogin(jTextFieldLogin.getText(), jPasswordFieldSenha.getText())){
+
+        if (cDao.checkLogin(jTextFieldLogin.getText(), c.criptografar(jPasswordFieldSenha.getPassword()))) {
             c.executarTelaUsuario();
             dispose();
-            
-            
-        }else{
-            JOptionPane.showMessageDialog(null, "Login ou senha invalido"+
-                    "tente novamente");
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Login ou senha invalido"
+                    + "tente novamente");
             jPasswordFieldSenha.setText("");
         }
-        
-  
+
+
     }//GEN-LAST:event_jButtonEntrarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
